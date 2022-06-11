@@ -2,14 +2,14 @@
 library(shinydashboard)
 
 ui <- dashboardPage(
-  dashboardHeader(title = "diabetes dashboard"),
+  dashboardHeader(title = "diab dash"),
 
 sidebar <- dashboardSidebar(
     sidebarMenu(
       menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
       menuItem("Food", tabName = "food", icon = icon("utensils")),
       menuItem("Insulin", tabName = "insulin", icon = icon("syringe")),
-      menuItem("GCM", tabName = "cgm", icon = icon("chart-line"))
+      menuItem("CGM", tabName = "cgm", icon = icon("chart-line"))
   )
 ),
 
