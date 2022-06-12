@@ -56,12 +56,13 @@ body <- dashboardBody(
       tabItem(tabName = "data",
               h2("Data"),
               tabsetPanel(
+                
                 id = "tabset",
                 tabPanel("CGM", "CGM data", icon=icon("chart-line")),
-                tabPanel("Insulin", "Insulin data", icon=icon("syringe"),
-                         splitLayout(cellWidths = c("33%", "33%", "33%"),
-                         plotlyOutput("tdd"),
-                         plotlyOutput("basal")),
+                tabPanel("Insulin", "This page sets out information about Skyla's insulin requirements", icon=icon("syringe"),
+                         splitLayout(
+                                     box(title = "Total Daily Dose", status = "primary", plotlyOutput("tdd")),
+                                     box(title = "Basal as a % of TDD", status = "warning", plotlyOutput("basal"))),
                          ),
                 tabPanel("Carbs", "Carbs data", icon=icon("utensils")))
       
@@ -83,10 +84,9 @@ server <- function(input, output) {
       geom_smooth(method=lm, col='grey', size=.5) +
       scale_x_date() +
       xlab("Date") + ylab("TDD") +
-      ylim(0,16) +
-      labs(title = "Total Daily Dose (TDD)")}
-    
-  )
+      ylim(0,16)
+
+    })
     
     output$basal <- renderPlotly({
       data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
@@ -95,8 +95,7 @@ server <- function(input, output) {
         geom_col(fill="coral1", col = "coral1") +
         geom_smooth(method=lm, col='black', size=.5, se=FALSE) +
         ylim(0,100) +
-        xlab("date") + ylab("% basal") +
-        labs(title = "Basal as a % of TDD")
+        xlab("date") + ylab("% basal")
   })
   
 }
