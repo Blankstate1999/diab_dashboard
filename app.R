@@ -26,40 +26,33 @@ ui <- dashboardPage(
 
 sidebar <- dashboardSidebar(
     sidebarMenu(
-      menuItem(dateRangeInput("range_date", "Select date range",
+      menuItem(dateRangeInput("range_date", "Date Range",
                               start = min(tdd_date$date),
                               end = max(tdd_date$date),
                               min = min(tdd_date$date),
                               max = max(tdd_date$date),
                               format = "dd/mm/yy")),
-      menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
-      menuItem("Food", tabName = "food", icon = icon("utensils")),
-      menuItem("Insulin", tabName = "insulin", icon = icon("syringe")),
-      menuItem("CGM", tabName = "cgm", icon = icon("chart-line"))
+      menuItem("Summary", tabName = "summary", icon = icon("dashboard")),
+      menuItem("Data", tabName = "data", icon = icon("chart-line"))
+      
   )
 ),
 
 body <- dashboardBody(
     # Boxes need to be put in a row (or column)
     tabItems(
-      tabItem(tabName = "dashboard",
-              h2("Dashboard tab content"),
+      tabItem(tabName = "summary",
+              h2("Overview")
+              ),
+      
+      tabItem(tabName = "data",
+              h2("Data"),
               tabsetPanel(
                 id = "tabset",
-                tabPanel("panel 1", "one"),
-                tabPanel("panel 2", "two"))
-              ),
+                tabPanel("CGM", "CGM data", icon=icon("chart-line")),
+                tabPanel("Insulin", "Insulin data", icon=icon("syringe")),
+                tabPanel("Carbs", "Carbs data", icon=icon("utensils")))
       
-      tabItem(tabName = "food",
-              h2("Food tab content")
-              ),
-      
-      tabItem(tabName = "insulin",
-              h2("Insulin tab content")
-              ),
-      
-      tabItem(tabName = "cgm",
-              h2("Continuous Glucose Monitoring (CGM) tab content")
       )
       
     )
