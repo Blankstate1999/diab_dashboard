@@ -3,6 +3,7 @@ library(shinydashboard)
 library(shiny)
 library(dplyr)
 library(tidyverse)
+library(plotly)
 
 # Import data
 insulin <- read_csv("insulin.csv")
@@ -16,10 +17,17 @@ tdd_df$date = as.Date(tdd_df$Time, format = "%Y-%m-%d")
 
 # Rename tdd variable
 tdd_df <- tdd_df %>%
-  rename(total_daily_dose = "Total daily dose")
+  rename(total_daily_dose = "Total daily dose",
+         total_daily_basal = "Total daily basal")
 
 # Filter out rows with null values in the tdd variable  
-tdd_date <- filter(tdd_df, (!is.na(tdd_df$total_daily_dose))) 
+tdd_date <- filter(tdd_df, (!is.na(tdd_df$total_daily_dose)))
+
+tdd_date$percent <- (tdd_date$total_daily_basal / tdd_date$total_daily_dose)
+tdd_date$percent <- (tdd_date$percent*100)
+tdd_date$percent <- round(tdd_date$percent, digits = 0)
+
+str(tdd_date)
 
 ui <- dashboardPage(
   dashboardHeader(title = "diab dash"),
@@ -50,7 +58,9 @@ body <- dashboardBody(
               tabsetPanel(
                 id = "tabset",
                 tabPanel("CGM", "CGM data", icon=icon("chart-line")),
-                tabPanel("Insulin", "Insulin data", icon=icon("syringe")),
+                tabPanel("Insulin", "Insulin data", icon=icon("syringe"),
+                         plotOutput("tdd"),
+                         plotOutput("basal")),
                 tabPanel("Carbs", "Carbs data", icon=icon("utensils")))
       
       )
@@ -62,13 +72,31 @@ body <- dashboardBody(
 )
 
 server <- function(input, output) {
-  set.seed(122)
-  histdata <- rnorm(500)
   
-  output$plot1 <- renderPlot({
-    data <- histdata[seq_len(input$slider)]
-    hist(data)
+  output$tdd <- renderPlot({
+    data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
+    ggplot(data1, 
+           aes(x = `date`, y = `total_daily_dose`)) +
+      geom_point(alpha = .25) +
+      geom_smooth(method=lm, col='black', size=1) +
+      scale_x_date() +
+      xlab("Date") + ylab("TDD") +
+      ylim(0,16) +
+      labs(title = "Total Daily Dose (TDD)")}
+    
+  )
+    
+    output$basal <- renderPlot({
+      data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
+      ggplot(data1,
+             aes(x = `date`, y = `percent`)) + 
+        geom_col(fill="coral1", col = "coral1") +
+        geom_smooth(method=lm, col='black', size=.5, se=FALSE) +
+        ylim(0,100) +
+        xlab("date") + ylab("% basal") +
+        labs(title = "Basal as a % of TDD")
   })
+  
 }
 
 shinyApp(ui, server)
