@@ -59,8 +59,10 @@ body <- dashboardBody(
                 id = "tabset",
                 tabPanel("CGM", "CGM data", icon=icon("chart-line")),
                 tabPanel("Insulin", "Insulin data", icon=icon("syringe"),
-                         plotOutput("tdd"),
-                         plotOutput("basal")),
+                         splitLayout(cellWidths = c("33%", "33%", "33%"),
+                         plotlyOutput("tdd"),
+                         plotlyOutput("basal")),
+                         ),
                 tabPanel("Carbs", "Carbs data", icon=icon("utensils")))
       
       )
@@ -73,12 +75,12 @@ body <- dashboardBody(
 
 server <- function(input, output) {
   
-  output$tdd <- renderPlot({
+  output$tdd <- renderPlotly({
     data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
     ggplot(data1, 
            aes(x = `date`, y = `total_daily_dose`)) +
       geom_point(alpha = .25) +
-      geom_smooth(method=lm, col='black', size=1) +
+      geom_smooth(method=lm, col='grey', size=.5) +
       scale_x_date() +
       xlab("Date") + ylab("TDD") +
       ylim(0,16) +
@@ -86,7 +88,7 @@ server <- function(input, output) {
     
   )
     
-    output$basal <- renderPlot({
+    output$basal <- renderPlotly({
       data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
       ggplot(data1,
              aes(x = `date`, y = `percent`)) + 
