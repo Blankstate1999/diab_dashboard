@@ -60,7 +60,7 @@ body <- dashboardBody(
                 id = "tabset",
                 tabPanel("CGM", "CGM data", icon=icon("chart-line")),
                 tabPanel("Insulin", "This page sets out information about Skyla's insulin requirements", icon=icon("syringe"),
-                         splitLayout(
+                         fluidRow(
                                      box(title = "Total Daily Dose", status = "primary", plotlyOutput("tdd")),
                                      box(title = "Basal as a % of TDD", status = "warning", plotlyOutput("basal"))),
                          ),
