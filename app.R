@@ -53,12 +53,12 @@ body <- dashboardBody(
               h2("Overview"),
               fluidRow(
                 # InfoBoxes
-                infoBox("Time in range", color="green", "82%", icon = icon("stopwatch")),
-                infoBox("Average", color="orange", "7.7 mmol/L", icon=icon("dot-circle")),
-                infoBox("Highest Value", color="red", "22.3 mmol/L", icon=icon("arrow-up")),
-                infoBox("Total Daily Dose", "11.5 Units", icon = icon("prescription-bottle")),
-                infoBox("Standard Deviation", "3.2 mmol/L", icon=icon("arrows-alt-v")),
-                infoBox("Lowest Value", color="red", "2.2 mmol/L", icon=icon("arrow-down")))
+                valueBox("82%", color="green", "Time in Range", icon = icon("stopwatch")),
+                valueBox("7.7", color="orange", "Average (mmol/L)", icon=icon("dot-circle")),
+                valueBox("22.3", color="red", "Highest Value (mmol/L)", icon=icon("arrow-up")),
+                valueBox("11.5", "Total Daily Dose", icon = icon("prescription-bottle")),
+                valueBox("3.2", "Standard deviation (mmol/L)", icon=icon("arrows-alt-v")),
+                valueBox("2.2", color="red", "Lowest Value (mmol/L)", icon=icon("arrow-down")))
       ),
       
       tabItem(tabName = "data",
