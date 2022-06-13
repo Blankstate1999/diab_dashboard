@@ -45,7 +45,14 @@ body <- dashboardBody(
     # Boxes need to be put in a row (or column)
     tabItems(
       tabItem(tabName="about",
-              h2("About")),
+              h3("Diabetes Dashboard"),
+              h5("A web-based dashboard for reviewing all of Skyla's key diabetes statistics at a glance"),
+              hr(),
+              h5(strong("Created"), "Lee Mercer"),
+              h5(strong("GitHub Username"), "BlankState1999"),
+              h5(strong("Email"), "leecraigmercer@gmail.com")
+              ),
+        
       
       tabItem(tabName = "summary",
               h2("Overview"),
@@ -71,7 +78,7 @@ body <- dashboardBody(
                 
                 id = "tabset",
                 tabPanel("CGM", "CGM data", icon=icon("chart-line")),
-                tabPanel("Insulin", "This page sets out information about Skyla's insulin requirements", icon=icon("syringe"),
+                tabPanel("Insulin", ".", icon=icon("syringe"),
                          fluidRow(
                                      box(title = "Total Daily Dose", solidHeader=TRUE, status = "primary", collapsible = TRUE, plotlyOutput("tdd")),
                                      box(title = "Basal as a % of TDD", solidHeader=TRUE, status = "primary", collapsible = TRUE, plotlyOutput("basal"))),
