@@ -34,12 +34,6 @@ ui <- dashboardPage(
 
 sidebar <- dashboardSidebar(
     sidebarMenu(
-      menuItem(dateRangeInput("range_date", "Date Range",
-                              start = min(tdd_date$date),
-                              end = max(tdd_date$date),
-                              min = min(tdd_date$date),
-                              max = max(tdd_date$date),
-                              format = "dd/mm/yy")),
       menuItem("Summary", tabName = "summary", icon = icon("dashboard")),
       menuItem("Data", tabName = "data", icon = icon("chart-line"))
       
@@ -63,6 +57,12 @@ body <- dashboardBody(
       
       tabItem(tabName = "data",
               h2("Data"),
+              dateRangeInput("range_date", "Date Range",
+                             start = min(tdd_date$date),
+                             end = max(tdd_date$date),
+                             min = min(tdd_date$date),
+                             max = max(tdd_date$date),
+                             format = "dd/mm/yy"),
               tabsetPanel(
                 
                 id = "tabset",
