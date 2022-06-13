@@ -34,8 +34,9 @@ ui <- dashboardPage(
 
 sidebar <- dashboardSidebar(
     sidebarMenu(
+      menuItem("About", tabName="about", icon=icon("question")),
       menuItem("Summary", tabName = "summary", icon = icon("dashboard")),
-      menuItem("Data", tabName = "data", icon = icon("chart-line"))
+      menuItem("Data", tabName = "data", icon = icon("line-chart"))
       
   )
 ),
@@ -43,6 +44,9 @@ sidebar <- dashboardSidebar(
 body <- dashboardBody(
     # Boxes need to be put in a row (or column)
     tabItems(
+      tabItem(tabName="about",
+              h2("About")),
+      
       tabItem(tabName = "summary",
               h2("Overview"),
               fluidRow(
@@ -52,12 +56,12 @@ body <- dashboardBody(
                 valueBox("22.3", color="red", "Highest Value (mmol/L)", icon=icon("arrow-up")),
                 valueBox("11.5", "Total Daily Dose", icon = icon("prescription-bottle")),
                 valueBox("3.2", "Standard deviation (mmol/L)", icon=icon("arrows-alt-v")),
-                valueBox("2.2", color="red", "Lowest Value (mmol/L)", icon=icon("arrow-down")))
+                valueBox("2.2", color="red", "Lowest Value (mmol/L)", icon=icon("arrow-down"))),
       ),
       
       tabItem(tabName = "data",
-              h2("Data"),
-              dateRangeInput("range_date", "Date Range",
+              h2("Data view"),
+              dateRangeInput("range_date", "Choose date range",
                              start = min(tdd_date$date),
                              end = max(tdd_date$date),
                              min = min(tdd_date$date),
@@ -69,8 +73,8 @@ body <- dashboardBody(
                 tabPanel("CGM", "CGM data", icon=icon("chart-line")),
                 tabPanel("Insulin", "This page sets out information about Skyla's insulin requirements", icon=icon("syringe"),
                          fluidRow(
-                                     box(title = "Total Daily Dose", status = "primary", plotlyOutput("tdd")),
-                                     box(title = "Basal as a % of TDD", status = "warning", plotlyOutput("basal"))),
+                                     box(title = "Total Daily Dose", solidHeader=TRUE, status = "primary", collapsible = TRUE, plotlyOutput("tdd")),
+                                     box(title = "Basal as a % of TDD", solidHeader=TRUE, status = "primary", collapsible = TRUE, plotlyOutput("basal"))),
                          ),
                 tabPanel("Carbs", "Carbs data", icon=icon("utensils")))
       
