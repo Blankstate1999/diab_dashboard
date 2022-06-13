@@ -50,8 +50,16 @@ body <- dashboardBody(
     # Boxes need to be put in a row (or column)
     tabItems(
       tabItem(tabName = "summary",
-              h2("Overview")
-              ),
+              h2("Overview"),
+              fluidRow(
+                # InfoBoxes
+                infoBox("Time in range", color="green", "82%", icon = icon("stopwatch")),
+                infoBox("Total Daily Dose", "11.5 Units", icon = icon("prescription-bottle")),
+                infoBox("Average", color="orange", "7.7 mmol/L", icon=icon("dot-circle")),
+                infoBox("Standard Deviation", color="orange", "3.2 mmol/L", icon=icon("arrows-alt-v")),
+                infoBox("Highest Value", color="red", "22.3 mmol/L", icon=icon("arrow-up")),
+                infoBox("Lowest Value", color="red", "2.2 mmol/L", icon=icon("arrow-down")))
+      ),
       
       tabItem(tabName = "data",
               h2("Data"),
