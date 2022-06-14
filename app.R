@@ -45,9 +45,19 @@ body <- dashboardBody(
     # Boxes need to be put in a row (or column)
     tabItems(
       tabItem(tabName="about",
-              h3("Diabetes Dashboard"),
+              h3("Welcome to Skyla's interactive diabetes dashboard"),
               h5("A web-based dashboard for reviewing all of Skyla's key diabetes statistics at a glance"),
-              hr(),
+              
+              h4("| Summary Page"),
+              
+              h5("The summary page is where you will find all of Skyla's headline stats, included her time in range, average blood glucose and total daily dose."),
+              
+              h4("| Data Page"),
+              h5("The", strong("data page"), "is where you will find a more detailed breakdown of Skyla's diabetes statistics."),
+              h5("Included on this page are tabs for her continous glucose monitoring (CGM), insulin and carbohydrate data"),
+              
+              h4("Contact details"),
+              h5("---"),
               h5(strong("Created"), "Lee Mercer"),
               h5(strong("GitHub Username"), "BlankState1999"),
               h5(strong("Email"), "leecraigmercer@gmail.com")
@@ -64,6 +74,16 @@ body <- dashboardBody(
                 valueBox("22.3", color="red", "Highest (mmol/L)", icon=icon("arrow-up"), width=2),
                 valueBox("2.2", color="red", "Lowest (mmol/L)", icon=icon("arrow-down"), width=2),
                 valueBox("3.2", color="orange", "Std. dev. (mmol/L)", icon=icon("stream"), width=2),),
+              
+              fluidRow(
+                box(title = "Box1", solidHeader=F, status = "primary", collapsible = TRUE, width=4),
+                box(title = "Box2", solidHeader=F, status = "warning", collapsible = TRUE, width=4),
+                box(title = "Box3", solidHeader=F, status = "primary", collapsible = TRUE, width=4),),
+              
+              fluidRow(
+                box(title = "Box4", solidHeader=F, status = "success", collapsible = TRUE, width=4),
+                box(title = "Box5", solidHeader=F, status = "danger", collapsible = TRUE, width=4),
+                box(title = "Box6", solidHeader=F, status = "info", collapsible = TRUE, width=4),),
       ),
       
       tabItem(tabName = "data",
