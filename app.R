@@ -61,8 +61,8 @@ body <- dashboardBody(
               h2("Overview"),
               fluidRow(
                 # InfoBoxes
-                valueBox("82%", color="green", "Time in Range", icon = icon("stopwatch"), width=2),
-                valueBox("11.5", "Total Daily Dose", icon = icon("prescription-bottle"), width=2),
+                valueBox("82%", "Time in Range", icon = icon("stopwatch"), width=2),
+                valueBoxOutput("tddBox"),
                 valueBox("7.7", color="orange", "Average (mmol/L)", icon=icon("bullseye"), width=2),
                 valueBox("22.3", color="red", "Highest (mmol/L)", icon=icon("arrow-up"), width=2),
                 valueBox("2.2", color="red", "Lowest (mmol/L)", icon=icon("arrow-down"), width=2),
@@ -107,6 +107,12 @@ body <- dashboardBody(
 )
 
 server <- function(input, output) {
+  
+  output$tddBox <- renderValueBox({
+    data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
+    valueBox(
+      paste0(mean(data1$total_daily_dose)), "Total Daily Dose", icon = icon("prescription-bottle"), color="green", width=2)
+  })
   
   output$tdd <- renderPlotly({
     data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
