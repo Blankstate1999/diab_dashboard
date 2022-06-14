@@ -35,8 +35,8 @@ ui <- dashboardPage(
 sidebar <- dashboardSidebar(
     sidebarMenu(
       menuItem("About", tabName="about", icon=icon("question")),
-      menuItem("Overview", tabName = "overview", icon = icon("dashboard")),
-      menuItem("Data", tabName = "data", icon = icon("line-chart"))
+      menuItem("Overview", tabName = "overview", icon = icon("grip-horizontal")),
+      menuItem("Data", tabName = "data", icon = icon("chart-line"))
       
   )
 ),
