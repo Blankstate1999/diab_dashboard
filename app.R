@@ -58,12 +58,12 @@ body <- dashboardBody(
               h2("Overview"),
               fluidRow(
                 # InfoBoxes
-                valueBox("82%", color="green", "Time in Range", icon = icon("stopwatch")),
-                valueBox("7.7", color="orange", "Average (mmol/L)", icon=icon("dot-circle")),
-                valueBox("22.3", color="red", "Highest Value (mmol/L)", icon=icon("arrow-up")),
-                valueBox("11.5", "Total Daily Dose", icon = icon("prescription-bottle")),
-                valueBox("3.2", "Standard deviation (mmol/L)", icon=icon("arrows-alt-v")),
-                valueBox("2.2", color="red", "Lowest Value (mmol/L)", icon=icon("arrow-down"))),
+                valueBox("82%", color="green", "Time in Range", icon = icon("stopwatch"), width=2),
+                valueBox("11.5", "Total Daily Dose", icon = icon("prescription-bottle"), width=2),
+                valueBox("7.7", color="orange", "Average (mmol/L)", icon=icon("bullseye"), width=2),
+                valueBox("22.3", color="red", "Highest (mmol/L)", icon=icon("arrow-up"), width=2),
+                valueBox("2.2", color="red", "Lowest (mmol/L)", icon=icon("arrow-down"), width=2),
+                valueBox("3.2", color="orange", "Std. dev. (mmol/L)", icon=icon("stream"), width=2),),
       ),
       
       tabItem(tabName = "data",
@@ -80,8 +80,8 @@ body <- dashboardBody(
                 tabPanel("CGM", "CGM data", icon=icon("chart-line")),
                 tabPanel("Insulin", ".", icon=icon("syringe"),
                          fluidRow(
-                                     box(title = "Total Daily Dose", solidHeader=TRUE, status = "primary", collapsible = TRUE, plotlyOutput("tdd")),
-                                     box(title = "Basal as a % of TDD", solidHeader=TRUE, status = "primary", collapsible = TRUE, plotlyOutput("basal"))),
+                                     box(title = "Total Daily Dose", solidHeader=F, status = "primary", collapsible = TRUE, width=6, plotlyOutput("tdd")),
+                                     box(title = "Basal as a % of TDD", solidHeader=F, status = "primary", collapsible = TRUE, width=6, plotlyOutput("basal"))),
                          ),
                 tabPanel("Carbs", "Carbs data", icon=icon("utensils")))
       
