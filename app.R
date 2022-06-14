@@ -45,18 +45,14 @@ body <- dashboardBody(
     # Boxes need to be put in a row (or column)
     tabItems(
       tabItem(tabName="about",
-              h3("Welcome to Skyla's interactive diabetes dashboard"),
-              h5("A web-based dashboard for reviewing all of Skyla's key diabetes statistics at a glance"),
+              h3("About"),
+              h5("Welcome to diab dash, an interactive web dashboard for reviewing all of Skyla's key diabetes statistics at a glance"),
+              h5(strong("Overview"), "is where you will find all of Skyla's headline stats, including her time in range, average blood glucose and total daily dose."),
+              h5(strong("Data"), "is where you will find a more detailed breakdown of Skyla's diabetes statistics. Included on this page are tabs for her continous glucose monitoring (CGM), insulin and carbohydrate data."),
               h5("-"),
-              h4("Summary"),
-              h5("The summary page is where you will find all of Skyla's headline stats, included her time in range, average blood glucose and total daily dose."),
-              h5("-"),
-              h4("Data"),
-              h5("The", strong("data page"), "is where you will find a more detailed breakdown of Skyla's diabetes statistics. Included on this page are tabs for her continous glucose monitoring (CGM), insulin and carbohydrate data."),
-              h5("-"),
-              h4("Contact details"),
-              h5(strong("Created"), "Lee Mercer"),
-              h5(strong("GitHub Username"), "BlankState1999"),
+              h4("Contact"),
+              h5(strong("Lead"), "Lee Mercer"),
+              h5(strong("GitHub"), "BlankState1999"),
               h5(strong("Email"), "leecraigmercer@gmail.com")
               ),
         
