@@ -111,7 +111,7 @@ server <- function(input, output) {
   output$tddBox <- renderValueBox({
     data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
     valueBox(
-      paste0(mean(data1$total_daily_dose)), "Total Daily Dose", icon = icon("prescription-bottle"), color="green", width=2)
+      paste0(round((mean(data1$total_daily_dose)), digits=1)), "Total Daily Dose", icon = icon("prescription-bottle"), color="green", width=2)
   })
   
   output$tdd <- renderPlotly({
