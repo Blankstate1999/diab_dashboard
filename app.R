@@ -62,7 +62,7 @@ body <- dashboardBody(
               fluidRow(
                 # InfoBoxes
                 valueBox("82%", "Time in Range", icon = icon("stopwatch"), width=2),
-                valueBoxOutput("tddBox"),
+                uiOutput("tddBox"),
                 valueBox("7.7", color="orange", "Average (mmol/L)", icon=icon("bullseye"), width=2),
                 valueBox("22.3", color="red", "Highest (mmol/L)", icon=icon("arrow-up"), width=2),
                 valueBox("2.2", color="red", "Lowest (mmol/L)", icon=icon("arrow-down"), width=2),
@@ -108,7 +108,7 @@ body <- dashboardBody(
 
 server <- function(input, output) {
   
-  output$tddBox <- renderValueBox({
+  output$tddBox <- renderUI({
     data1 <- tdd_date[tdd_date$date>=input$range_date[1] & tdd_date$date<=input$range_date[2],]
     valueBox(
       paste0(round((mean(data1$total_daily_dose)), digits=1)), "Total Daily Dose", icon = icon("prescription-bottle"), color="green", width=2)

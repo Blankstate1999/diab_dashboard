@@ -5,9 +5,9 @@ account: blankstate
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6472292
-bundleId: 6008029
+bundleId: 6010598
 url: https://blankstate.shinyapps.io/diab_dashboard/
-when: 1655241641.86028
-lastSyncTime: 1655241641.8603
+when: 1655305330.62307
+lastSyncTime: 1655305330.62308
 asMultiple: FALSE
 asStatic: FALSE
