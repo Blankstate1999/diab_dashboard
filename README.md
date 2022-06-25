@@ -1,8 +1,6 @@
 # Diabetes Dashboard
 A web-based dashboard for reviewing all of Skyla's key diabetes statistics at a glance
 
----
-
 ## App Overview
 
 ### Total Daily Dose (TDD)
