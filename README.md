@@ -1,5 +1,5 @@
 # Diabetes Dashboard
-A web-based dashboard for reviewing all of Skyla's key diabetes statistics at a glance
+A web-based dashboard for reviewing Skyla's key diabetes statistics at a glance
 
 ## App Overview
 
