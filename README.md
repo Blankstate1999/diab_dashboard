@@ -13,7 +13,7 @@ Plot 1 gives details of Skyla's total daily insulin over a user-specified date r
 
 Plot 2 shows Skyla's total daily basal as a percentage of her total daily dose (basal + bolus) insulin. A linear trend line has been added to visualise changes over time.
 
----
+## Contact
 
 * **Created by** Lee Mercer
 * **GitHub Username** BlankState1999
